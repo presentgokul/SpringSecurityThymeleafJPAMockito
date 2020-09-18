@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+         <meta http-equiv="" content="30">
+        <title>Products</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    </head>
+    <body>
+
+	<div class="jumbotron">
+		<h1>Product Offers Administration</h1>
+		<p>This application allows you to add offers to your products</p>
+	</div>
+
+	   <div th:switch="${products}" class="container my-5">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2 th:case="null">No Offers yet!</h2>
+                    <div th:case="*">
+                        <h2 class="my-5">Products </h2>
+                        <table class="table table-striped table-responsive-md">
+                            <thead>
+                                <tr>
+								<th>Name</th>
+								<th>Description</th>
+								<th>Price(£)</th>
+								<th>Offer Price(£)</th>
+								<th>Start Time</th>
+								<th>Expiry Time</th>
+								<th></th>
+								<th>Edit</th>
+								<th>Delete</th>
+							</tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="product : ${products}">
+                                    <td th:text="${product.name}"></td>
+                                    <td th:text="${product.description}"></td>
+                                     <td th:text="${product.price}"></td>
+                                      <td th:text="${product.offerprice}"></td>
+                                       <td th:text="${product.offerstarttime}"></td>
+                                        <td th:text="${product.offerexpirytime}"></td>
+                                         <td><p style="font-family:verdana;font-weight:bold;"><font color="red" th:text="${product.status}? 'Save £' + ${product.onOfferPrice}"></font></p></td>
+                                    <td><a th:href="@{/edit/{id}(id=${product.id})}" class="btn btn-primary"><i class="fas fa-pen-square"></i></a></td>
+                                    <td><a th:href="@{/delete/{id}(id=${product.id})}" class="btn btn-primary"><i class="fas fa-minus-circle"></i></a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>      
+                    <p class="my-5"><a href="/offer" class="btn btn-primary"><i class="fas fa-plus-square"></i></a></p>
+                </div>
+            </div>
+        </div>
+	<script language="javascript">
+		setInterval(function() {
+			window.location.reload(1);
+		}, 10000);
+	</script>
+</body>
+</html>
