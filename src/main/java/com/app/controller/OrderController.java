@@ -41,7 +41,7 @@ public class OrderController {
     }
     
     @PostMapping("/addOffer")
-    public String addUser(@Valid @ModelAttribute("product") Product product, Errors errors, Model model) {
+    public String addProduct(@Valid @ModelAttribute("product") Product product, Errors errors, Model model) {
     	 if (null != errors && errors.getErrorCount() > 0) {
              return "add-offer";
          } else {
@@ -61,7 +61,7 @@ public class OrderController {
     }
     
     @PostMapping("/update/{id}")
-    public String updateUser(@PathVariable("id") long id, @Valid @ModelAttribute("product") Product product, BindingResult result, Model model) {
+    public String updateProduct(@PathVariable("id") long id, @Valid @ModelAttribute("product") Product product, BindingResult result, Model model) {
         if (result.hasErrors()) {
         	product.setId(id);
             return "update-offer";
@@ -72,7 +72,7 @@ public class OrderController {
     }
     
     @GetMapping("/delete/{id}")
-    public String deleteUser(@PathVariable("id") long id, Model model) {
+    public String deleteProduct(@PathVariable("id") long id, Model model) {
     	Product product = productRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
     	productRepository.delete(product);
         model.addAttribute("products", productRepository.findAll());
