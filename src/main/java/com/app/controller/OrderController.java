@@ -55,7 +55,7 @@ public class OrderController {
 
 	@GetMapping("/edit/{id}")
     public String showUpdateForm(@PathVariable("id") long id, Model model) {
-        Product product = productRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+        Product product = productRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid product Id:" + id));
         model.addAttribute("product", product);
         return "update-offer";
     }
@@ -73,7 +73,7 @@ public class OrderController {
     
     @GetMapping("/delete/{id}")
     public String deleteProduct(@PathVariable("id") long id, Model model) {
-    	Product product = productRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+    	Product product = productRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid product Id:" + id));
     	productRepository.delete(product);
         model.addAttribute("products", productRepository.findAll());
         return "redirect:/index";
