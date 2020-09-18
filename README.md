@@ -12,6 +12,17 @@ It uses Spring Security, JPA , Thymeleaf for UI and Tests with Mockito
 
 See Screenshots.docx file for testscreens
 
+Run As Standalone
+-------------------
+
+Extract the project
+
+Go to extracted folder in cmd prompt and run below cmd
+
+mvn spring-boot:run
+
+Go to http://localhost:8080/ , login with user@user
+
 Generate As Deployable
 -------------------
 
