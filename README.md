@@ -1,6 +1,6 @@
 # SpringSecurityThymeleafJPAMockito
 
-ABOUT THE Application
+About The Application
 =====================
 
 This is a rich client web application, with a Java web API exposing data to an HTML+CSS+JS browser client. The webapp is
